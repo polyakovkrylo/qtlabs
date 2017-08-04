@@ -9,10 +9,6 @@ Welcome to qtlabs's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   Introduction
-   Installation
-   Lab 1. Foundamental concepts of Qt
-
 
 
 Indices and tables
