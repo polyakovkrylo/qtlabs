@@ -3,5 +3,5 @@ Introduction
 
 Just type smth 
 
-What is Qt?
-==================================
+  What is Qt?
+  ==================================
