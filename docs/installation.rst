@@ -1,4 +1,4 @@
-Welcome to installation!
+Installation
 ==================================
 
 Just type smth 
