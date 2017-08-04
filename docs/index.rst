@@ -8,6 +8,9 @@ Welcome to qtlabs's documentation!
 
 .. toctree::
    :maxdepth: 2
+   
+   introduction
+   installation
 
 
 Indices and tables
