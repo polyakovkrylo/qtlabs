@@ -1,7 +1,9 @@
 Introduction
 ==================================
 
-Just type smth 
+.. toctree::
+   :maxdepth: 2
+   
+   whatisqt
 
-  What is Qt?
-  ==================================
+

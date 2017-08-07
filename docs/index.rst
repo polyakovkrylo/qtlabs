@@ -6,10 +6,10 @@
 Welcome to qtlabs's documentation!
 ==================================
 
+This project aims to give basic knowledges and skills of using Qt framework. There is no special prerequisites, except some essentials in C++.
+
 .. toctree::
    :maxdepth: 2
    
    introduction
    installation
-
-
