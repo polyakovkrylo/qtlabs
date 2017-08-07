@@ -11,5 +11,5 @@ This project aims to give basic knowledges and skills of using Qt framework. The
 .. toctree::
    :maxdepth: 2
    
-   introduction
-   installation
+   introduction/index
+   installation/index
