@@ -1,4 +1,11 @@
 Installation
 ==================================
+This part will explain how to install Qt and how to create your first project in
+Qt Creator
 
-Just type smth 
+.. toctree::
+   :maxdepth: 2
+
+   prerequisites
+   qtinstallation
+   firstproject
