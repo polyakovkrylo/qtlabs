@@ -4,8 +4,48 @@ Qt installation
 Let's first start with installation of Qt and proceed with trying it out by
 creating a simple hello world project:
 
-#. Go to `Qt download page <https://info.qt.io/download-qt-for-application-development>`_ and download Qt by picking open source version.
-#. After downloading installer run it. Linux users need to add permission for execution. For that, right click on file -> Properties -> set flag on 'is executable', than it should become executable.
-#. You can skip creating a Qt account or, obviously, create one.
-#. Later on selecting components page pick the latest version of Qt (5.9.1 at the moment) and Tools.
-#. Install it!
+.. note::
+  Installation will use approx. 1.47GiB of disk space.
+
+1. Go to `Qt download page <https://info.qt.io/download-qt-for-application-development>`_\
+and download Qt by picking open source version.
+
+|
+|
+
+2. After downloading installer run it. Linux users need to add permission for \
+execution. For that, right click on file -> Properties -> set flag on \
+'is executable', than it should become executable.
+
+.. image:: screenshot_exec.png
+  :align: center
+
+|
+|
+
+3. You can skip creating a Qt account or, obviously, create one.
+
+.. image:: screenshot_login.png
+  :align: center
+
+|
+|
+
+4. Choose the path you would like to install Qt
+
+.. image:: screenshot_path.png
+  :align: center
+
+|
+|
+
+5. On selecting components page pick the latest version of Qt \
+(5.9.1 at the moment) and Tools.
+
+.. image:: screenshot_version.png
+  :align: center
+
+|
+|
+
+6. Install it!

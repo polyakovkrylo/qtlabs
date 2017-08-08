@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Installation &#8212; qtlabs  documentation</title>
+    <title>Prerequisites &#8212; qtlabs  documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Prerequisites" href="prerequisites.html" />
-    <link rel="prev" title="Toolkit" href="../introduction/toolkit.html" />
+    <link rel="next" title="Qt installation" href="qtinstallation.html" />
+    <link rel="prev" title="Getting started with Qt" href="index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -40,21 +40,33 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>This part will explain how to install Qt and how to create your first project in
-Qt Creator</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="prerequisites.html">Prerequisites</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#linux">Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#windows">Windows</a></li>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites.html#macos">MacOS</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="qtinstallation.html">Qt installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="firstproject.html">First project in Qt Creator</a></li>
-</ul>
+  <div class="section" id="prerequisites">
+<h1>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h1>
+<p>Before we proceed, let’s install some packages we may need in order to build and
+debug our applications.</p>
+<div class="section" id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h2>
+<p>Linux users need few additional packages like:</p>
+<p>1. <a class="reference external" href="https://www.opengl.org">OpenGL</a> - open graphics library for hardware-accelerated rendering</p>
+<p>2. <a class="reference external" href="https://www.gnu.org/software/make/">GNU Make</a> - a tool which controls the generation of executables and other non-source files of a program</p>
+<p>3. <a class="reference external" href="https://gcc.gnu.org/">GCC</a> - GNU Compiler Collection</p>
+<p>4. <a class="reference external" href="https://www.gnu.org/software/gdb/">gdb</a> - GNUdebugger</p>
+<p>You can install these packages using following command:</p>
+<div class="highlight-none"><div class="highlight"><pre><span></span>sudo apt-get install gcc g++ gdb make libgl1-mesa-dev
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The command above will only work in Debian-like distributions, such as Ubuntu, Linux Mint, KDE Neon, etc.</p>
+</div>
+</div>
+<div class="section" id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
+<p>No additional software must be installed. Everything should work out of box.</p>
+</div>
+<div class="section" id="macos">
+<h2>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h2>
+<p>No idea, honestly.</p>
 </div>
 </div>
 
@@ -76,8 +88,8 @@ Qt Creator</p>
 <h3>Navigation</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started with Qt</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qtinstallation.html">Qt installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="firstproject.html">First project in Qt Creator</a></li>
 </ul>
@@ -88,8 +100,10 @@ Qt Creator</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../introduction/toolkit.html" title="previous chapter">Toolkit</a></li>
-      <li>Next: <a href="prerequisites.html" title="next chapter">Prerequisites</a></li>
+  <li><a href="index.html">Getting started with Qt</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Getting started with Qt</a></li>
+      <li>Next: <a href="qtinstallation.html" title="next chapter">Qt installation</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -115,7 +129,7 @@ Qt Creator</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/installation/index.rst.txt"
+      <a href="../_sources/getting-started/prerequisites.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

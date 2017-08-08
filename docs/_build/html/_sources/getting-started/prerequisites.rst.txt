@@ -12,10 +12,15 @@ Linux users need few additional packages like:
 
 1. `OpenGL <https://www.opengl.org>`_ - open graphics library for \
 hardware-accelerated rendering
+
 2. `GNU Make <https://www.gnu.org/software/make/>`_ - a tool which controls \
 the generation of executables and other non-source files of a program
-3. `GCC <https://gcc.gnu.org/>`_ - GNU Compiler Collection
-4. `gdb <https://www.gnu.org/software/gdb/>`_ - GNU debugger
+
+3. `GCC <https://gcc.gnu.org/>`_ - GNU Compiler \
+Collection
+
+4. `gdb <https://www.gnu.org/software/gdb/>`_ - GNU\
+debugger 
 
 You can install these packages using following command:
 

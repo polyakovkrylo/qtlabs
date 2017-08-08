@@ -23,6 +23,8 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="First project in Qt Creator" href="firstproject.html" />
+    <link rel="prev" title="Prerequisites" href="prerequisites.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -49,10 +51,9 @@ creating a simple hello world project:</p>
 <p>1. Go to <a class="reference external" href="https://info.qt.io/download-qt-for-application-development">Qt download page</a>and download Qt by picking open source version.</p>
 <div class="line-block">
 <div class="line"><br /></div>
-<div class="line"><br /></div>
 </div>
 <p>2. After downloading installer run it. Linux users need to add permission for execution. For that, right click on file -&gt; Properties -&gt; set flag on ‘is executable’, than it should become executable.</p>
-<img alt="installation/screenshot_exec.png" class="align-center" src="installation/screenshot_exec.png" />
+<img alt="../_images/screenshot_exec.png" class="align-center" src="../_images/screenshot_exec.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -60,7 +61,7 @@ creating a simple hello world project:</p>
 <ol class="arabic simple" start="3">
 <li>You can skip creating a Qt account or, obviously, create one.</li>
 </ol>
-<img alt="installation/screenshot_login.png" class="align-center" src="installation/screenshot_login.png" />
+<img alt="../_images/screenshot_login.png" class="align-center" src="../_images/screenshot_login.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -68,13 +69,13 @@ creating a simple hello world project:</p>
 <ol class="arabic simple" start="4">
 <li>Choose the path you would like to install Qt</li>
 </ol>
-<img alt="installation/screenshot_path.png" class="align-center" src="installation/screenshot_path.png" />
+<img alt="../_images/screenshot_path.png" class="align-center" src="../_images/screenshot_path.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
 </div>
 <p>5. On selecting components page pick the latest version of Qt (5.9.1 at the moment) and Tools.</p>
-<img alt="installation/screenshot_version.png" class="align-center" src="installation/screenshot_version.png" />
+<img alt="../_images/screenshot_components.png" class="align-center" src="../_images/screenshot_components.png" />
 <div class="line-block">
 <div class="line"><br /></div>
 <div class="line"><br /></div>
@@ -82,6 +83,42 @@ creating a simple hello world project:</p>
 <ol class="arabic simple" start="6">
 <li>Install it!</li>
 </ol>
+<p>If everything went good, you shall be able to start Qt Creator. Now, let’s  set up the build configuration.</p>
+<div class="section" id="setting-up-the-build-configuration">
+<h2>Setting up the build configuration<a class="headerlink" href="#setting-up-the-build-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Before you can start using Qt you need to ensure that the build configuration isset properly. Long story short, configuration includes selection of a compilerand a version Qt libraries. A combination of these two components (compiler and Qt version) is called a kit and is a corner stone of cross-compilation. Butwe will get back to it later. Now you ony need to check if the default kit isworking fine. To do that:</p>
+<p>1. Start Qt creator.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>2. Go to Tools -&gt; Options…</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>3. Select Build &amp; Run in the menu on the left, then pick tab Kits, and check ifthere is an Auto-detected kit. If there is one, select it and check if both C and C++ compilers are set. If both are set, it means that your kit is properly set and you can skip the rest of this part and start with your <a class="reference external" href="firstproject.html">first project</a>.</p>
+<img alt="../_images/screenshot_kits.png" class="align-center" src="../_images/screenshot_kits.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>4. If no kit is auto-detected or if auto-dected misses Qt version or compilers,you have to set them up manually.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>5. To set up Qt version go to Qt versions tab -&gt; Add… ,go to the Qt installation path and search for qmake file inside that folder. It should somewhere inside folder like  5.9/gcc_64/bin depending on the platform and version used.</p>
+<img alt="../_images/screenshot_versions.png" class="align-center" src="../_images/screenshot_versions.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>6. To set up compilers go to Compilers tab -&gt; Add, select the proper compiler that you use (usually MinGW for Windows and GCC for Linux) and search for gcc and g++ in the system.</p>
+<img alt="../_images/screenshot_compilers.png" class="align-center" src="../_images/screenshot_compilers.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>After just click ok and that is it! You are ready for your first project!</p>
+</div>
 </div>
 
 
@@ -100,15 +137,24 @@ creating a simple hello world project:</p>
 
 
 <h3>Navigation</h3>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting started with Qt</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting started with Qt</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prerequisites.html">Prerequisites</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Qt installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstproject.html">First project in Qt Creator</a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Getting started with Qt</a><ul>
+      <li>Previous: <a href="prerequisites.html" title="previous chapter">Prerequisites</a></li>
+      <li>Next: <a href="firstproject.html" title="next chapter">First project in Qt Creator</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -134,7 +180,7 @@ creating a simple hello world project:</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
       
       |
-      <a href="../_sources/installation/qtinstallation.rst.txt"
+      <a href="../_sources/getting-started/qtinstallation.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

@@ -12,4 +12,4 @@ This project aims to give basic knowledges and skills of using Qt framework. The
    :maxdepth: 2
    
    introduction/index
-   installation/index
+   getting-started/index
