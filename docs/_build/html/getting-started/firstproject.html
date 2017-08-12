@@ -41,6 +41,143 @@
             
   <div class="section" id="first-project-in-qt-creator">
 <h1>First project in Qt Creator<a class="headerlink" href="#first-project-in-qt-creator" title="Permalink to this headline">¶</a></h1>
+<p>Before we start with learning Qt we should first learn how to create and maintain the project in Qt creator:</p>
+<p>1. Open Qt Creator, go to the Welcome page, and click Projects -&gt; New Project</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>2. Since we want to check if everything is working fine, we pick Qt Quick Application and click next</p>
+<img alt="../_images/screenshot_project_template_selection.png" class="align-center" src="../_images/screenshot_project_template_selection.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>3. Give a name and place for a project. It is always a nice idea to store all projects in one place, so you can create a workspace and mark it as a default project location.</p>
+<img alt="../_images/screenshot_project_location.png" class="align-center" src="../_images/screenshot_project_location.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>4. Pick a minimal version of Qt libraries. Since we don’t really care about compatability so far, you can leave it as it is. But we also won’t use Qt Designer this time, so unmark “With ui.qml file”.</p>
+<img alt="../_images/screenshot_project_version_selection.png" class="align-center" src="../_images/screenshot_project_version_selection.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>5. Pick a kit to use. Most probably you will only have one kit, thus you have not so many options. But interesting part is hidden in details. Here you can define a place and a name for a building directory. By default it is located on the same level as the project folder, but you can choose any other level or  a foldr name, it should not bring you any troubles except a warning. You can also see that there three possible versions: debug, release, and progile. You can freely use any of them, the differnce is only that debugging and profiling versions add some information to executable for debugging/profiling.</p>
+<img alt="../_images/screenshot_project_kit_selection.png" class="align-center" src="../_images/screenshot_project_kit_selection.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="6">
+<li>Finish the creation</li>
+</ol>
+<p>After finishing the creation Creator will open the project and show main.qml file.</p>
+<p>On the left side you can see the structure of a project. It include .pro file, you won’t usually change, it is just specifies Qt modules used in the project and sources and headers. Then the project has sources and headers sections. Since we don’t have any headers in our project, so you shall only be able to see the Sources section. Next, there is a resource section. We will later talk about what resources are, but long story short those are collections of files that will be included into executable, so later on you will only need to put one file in the target machine for deployment instead of bunch of pictures and conf files.</p>
+<p>You can see that main.qml represents some basic “hello world”-like template. Let’s change it now for something just a bit fancier to get to know how to add files to a project. Let it be clocks, for example.</p>
+<p>First update the main.cpp and main.qml files. Replace the contents ofmain.qml with following lines:</p>
+<pre class="code qml literal-block">
+<span class="keyword reserved">import</span> <span class="name other">QtQuick</span> <span class="literal number float">2.6</span>
+<span class="keyword reserved">import</span> <span class="name other">QtQuick</span><span class="punctuation">.</span><span class="name other">Window</span> <span class="literal number float">2.2</span>
+
+    <span class="name other">Image</span> <span class="punctuation">{</span>
+        <span class="keyword">visible:</span> <span class="keyword constant">true</span>
+        <span class="keyword declaration">id: background</span>
+        <span class="keyword">source:</span> <span class="literal string double">&quot;pics/clocks_background.png&quot;</span>
+
+        <span class="name other">Image</span> <span class="punctuation">{</span>
+            <span class="keyword declaration">id: minuteArrow</span>
+            <span class="keyword">source:</span> <span class="literal string double">&quot;pics/clocks_minute_arrow.png&quot;</span>
+            <span class="keyword">x:</span> <span class="name other">parent</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span> <span class="operator">-</span> <span class="name other">minuteArrowRotation</span><span class="punctuation">.</span><span class="name other">origin</span><span class="punctuation">.</span><span class="name other">x</span>
+            <span class="keyword">y:</span> <span class="name other">parent</span><span class="punctuation">.</span><span class="name other">height</span><span class="operator">/</span><span class="literal number integer">2</span> <span class="operator">-</span> <span class="name other">minuteArrowRotation</span><span class="punctuation">.</span><span class="name other">origin</span><span class="punctuation">.</span><span class="name other">y</span>
+
+            <span class="keyword">transform:</span> <span class="name other">Rotation</span> <span class="punctuation">{</span>
+                <span class="keyword declaration">id: minuteArrowRotation</span>
+                <span class="keyword">origin.x:</span> <span class="name other">minuteArrow</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+                <span class="keyword">origin.y:</span> <span class="name other">minuteArrow</span><span class="punctuation">.</span><span class="name other">height</span> <span class="operator">-</span> <span class="name other">minuteArrow</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+
+                <span class="name other">Behavior</span> <span class="name other">on</span> <span class="name other">angle</span> <span class="punctuation">{</span>
+                    <span class="name other">RotationAnimation</span> <span class="punctuation">{</span> <span class="keyword">duration:</span> <span class="literal number integer">400</span><span class="punctuation">;</span> <span class="keyword">direction:</span> <span class="name other">RotationAnimation</span><span class="punctuation">.</span><span class="name other">Clockwise</span><span class="punctuation">}</span>
+                <span class="punctuation">}</span>
+            <span class="punctuation">}</span>
+        <span class="punctuation">}</span>
+
+        <span class="name other">Image</span> <span class="punctuation">{</span>
+            <span class="keyword declaration">id: hourArrow</span>
+            <span class="keyword">source:</span> <span class="literal string double">&quot;pics/clocks_hour_arrow.png&quot;</span>
+            <span class="keyword">x:</span> <span class="name other">parent</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span> <span class="operator">-</span> <span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+            <span class="keyword">y:</span> <span class="name other">parent</span><span class="punctuation">.</span><span class="name other">height</span><span class="operator">/</span><span class="literal number integer">2</span> <span class="operator">-</span> <span class="name other">height</span> <span class="operator">+</span> <span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+
+            <span class="keyword">transform:</span> <span class="name other">Rotation</span> <span class="punctuation">{</span>
+                <span class="keyword declaration">id: hourArrowRotation</span>
+                <span class="keyword">origin.x:</span> <span class="name other">hourArrow</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+                <span class="keyword">origin.y:</span> <span class="name other">hourArrow</span><span class="punctuation">.</span><span class="name other">height</span> <span class="operator">-</span> <span class="name other">minuteArrow</span><span class="punctuation">.</span><span class="name other">width</span><span class="operator">/</span><span class="literal number integer">2</span>
+
+                <span class="name other">Behavior</span> <span class="name other">on</span> <span class="name other">angle</span> <span class="punctuation">{</span>
+                    <span class="name other">RotationAnimation</span> <span class="punctuation">{</span> <span class="keyword">duration:</span> <span class="literal number integer">400</span><span class="punctuation">;</span> <span class="keyword">direction:</span> <span class="name other">RotationAnimation</span><span class="punctuation">.</span><span class="name other">Clockwise</span><span class="punctuation">}</span>
+                <span class="punctuation">}</span>
+            <span class="punctuation">}</span>
+        <span class="punctuation">}</span>
+
+        <span class="name other">Timer</span> <span class="punctuation">{</span>
+            <span class="keyword">interval:</span> <span class="literal number integer">60000</span>
+            <span class="keyword">repeat:</span> <span class="keyword constant">true</span>
+            <span class="keyword">running:</span> <span class="keyword constant">true</span>
+            <span class="keyword">triggeredOnStart:</span> <span class="keyword constant">true</span>
+            <span class="keyword">onTriggered:</span> <span class="punctuation">{</span>
+                <span class="keyword declaration">var</span> <span class="name other">today</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="name builtin">Date</span><span class="punctuation">()</span>
+                <span class="name other">hourArrowRotation</span><span class="punctuation">.</span><span class="name other">angle</span> <span class="operator">=</span> <span class="punctuation">((</span><span class="name other">today</span><span class="punctuation">.</span><span class="name other">getHours</span><span class="punctuation">()</span><span class="operator">%</span><span class="literal number integer">12</span><span class="punctuation">)</span> <span class="operator">*</span> <span class="literal number integer">30</span><span class="punctuation">)</span>
+                <span class="name other">minuteArrowRotation</span><span class="punctuation">.</span><span class="name other">angle</span> <span class="operator">=</span> <span class="name other">today</span><span class="punctuation">.</span><span class="name other">getMinutes</span><span class="punctuation">()</span> <span class="operator">*</span> <span class="literal number integer">6</span>
+            <span class="punctuation">}</span>
+        <span class="punctuation">}</span>
+    <span class="punctuation">}</span>
+</pre>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>QML may now look a bit weird, but later yu will see that it is very useful when
+implementing GUI. Next, open main.cpp file and replace its contents with next lines:</p>
+<div class="code c highlight-default"><div class="highlight"><pre><span></span><span class="c1">#include &lt;QGuiApplication&gt;</span>
+<span class="c1">#include &lt;QQuickView&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">(</span><span class="nb">int</span> <span class="n">argc</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">QGuiApplication</span> <span class="n">app</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+
+    <span class="n">QQuickView</span> <span class="n">view</span><span class="p">;</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">setSource</span><span class="p">(</span><span class="n">QUrl</span><span class="p">(</span><span class="n">QStringLiteral</span><span class="p">(</span><span class="s2">&quot;qrc:/main.qml&quot;</span><span class="p">)));</span>
+
+    <span class="n">view</span><span class="o">.</span><span class="n">setFlags</span><span class="p">(</span><span class="n">Qt</span><span class="p">::</span><span class="n">FramelessWindowHint</span> <span class="o">|</span> <span class="n">Qt</span><span class="p">::</span><span class="n">WindowStaysOnBottomHint</span><span class="p">);</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">setX</span><span class="p">(</span><span class="mi">1150</span><span class="p">);</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">setY</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">setColor</span><span class="p">(</span><span class="n">QColor</span><span class="p">(</span><span class="n">Qt</span><span class="p">::</span><span class="n">transparent</span><span class="p">));</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="n">app</span><span class="o">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>No we need to add to the project images that we are going to use in the project.
+You can download pics from <a class="reference external" href="https://github.com/polyakovkrylo/qtlabs">github qtlabs repo</a>  in src/firstproject/pics. Create a new directory called pics inside the project and put the downloaded pics into that folder. Now you need to add them to a project resources. To add new files to resources right click on Resources section -&gt; Add existing… and choose all pics you need (hold Ctrl or Shift for multi-picking). Adding sources is similiar to adding resources, you only need to
+right click on sources or headers and add new or existing files.</p>
+<p>From now on you should be able to run your first app. Click Run in the bottom corner. Your application shall run as a bottom window, so hide other windows to check it out. Our application has frameless window, so in order to close it just click Stop button in Qt creator above Application output section.
+Congratulations! You have just finised your first app. Try now just to tune it a bit:</p>
+<p>1. Clock arrows move to slow. Try to find a way to make the minute arrow act like a second arrow and the hour arrow act like a minute arrow</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Search main.qml for the answer</p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Why should our app run on the bottom? Let’s move it to foreground!</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You should probably delete something in main.cpp</p>
+</div>
 </div>
 
 

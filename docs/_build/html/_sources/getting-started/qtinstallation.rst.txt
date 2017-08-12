@@ -12,8 +12,8 @@ and download Qt by picking open source version.
 
 |
 
-2. After downloading installer run it. Linux users need to add permission for \
-execution. For that, right click on file -> Properties -> set flag on \
+2. After downloading the installer run it. Linux users need to add permission for \
+execution. For that, right click on the file -> Properties -> set flag \
 'is executable', than it should become executable.
 
 .. image:: screenshot_exec.png
@@ -85,14 +85,14 @@ set and you can skip the rest of this part and start with your \
 |
 |
 
-4. If no kit is auto-detected or if auto-dected misses Qt version or compilers,\
+4. If no kit is auto-detected or if auto-dected kit misses Qt version or compilers, \
 you have to set them up manually.
 
 |
 
 5. To set up Qt version go to Qt versions tab -> Add... ,go to the \
 Qt installation path and search for qmake file inside that folder. It should \
-somewhere inside folder like  5.9/gcc_64/bin depending on the platform and \
+be somewhere inside a folder like  5.9/gcc_64/bin or else depending on the platform and \
 version used.
 
 .. image:: screenshot_versions.png
