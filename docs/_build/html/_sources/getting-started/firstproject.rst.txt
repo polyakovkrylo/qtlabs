@@ -93,10 +93,19 @@ You can download pics from \
 `github qtlabs repo <https://github.com/polyakovkrylo/qtlabs>`_  in \
 src/firstproject/pics. Create a new directory called pics inside the project \
 and put the downloaded pics into that folder. Now you need to add them to a \
-project resources. To add new files to resources right click on Resources \
-section -> Add existing... and choose all pics you need (hold Ctrl or Shift for \
+project resources. To add new files to resources right click on qml.qrc \
+-> Add existing... and choose all pics you need (hold Ctrl or Shift for \
 multi-picking). Adding sources is similiar to adding resources, you only need to
 right click on sources or headers and add new or existing files.
+
+.. note::
+
+  To add a file to a project right click on any section (folder) of the \
+  project -> Add new(add existing..)
+
+  To add file to a project right click on the .qrc file -> Add new(add existing..)
+
+  To delete file from a project right on the file -> Remove
 
 From now on you should be able to run your first app. Click Run in the \
 bottom corner. Your application shall run as a bottom window, so hide other windows \

@@ -43,6 +43,32 @@
   <div class="section" id="typical-main-cpp-file">
 <h1>Typical main.cpp file<a class="headerlink" href="#typical-main-cpp-file" title="Permalink to this headline">¶</a></h1>
 <p>Let’s first look at the example of main.cpp:</p>
+<div class="highlight-c++"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;QApplication&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;QLabel&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">QApplication</span> <span class="n">app</span><span class="p">(</span><span class="n">argc</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span>
+  <span class="n">QLabel</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">);</span>
+  <span class="n">lbl</span><span class="p">.</span><span class="n">show</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">app</span><span class="p">.</span><span class="n">exec</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>You can see now that it is lot like any other C++ program’s main file. It goes as following:</p>
+<p>1. Declare inclusions. These can be user headers as well as precompiled Qt libraries, if any Qt classes are used directly in main function. In the above we use QLabel and QApplication, thus we declare them before using in main().</p>
+<p>2. Create an instance of QApplication class. This object controls and maintains the application that we create. Only one instance of QApplication is allowed in one program.</p>
+<p>3. Create an instance of QLabel. After creating Qt elements are usually invisible, so we have to call show() in order to make it visible. In this case QLabel object is the root object, which means that it will be created as an separate window, and the applicaion will exit once this window is closed.</p>
+<p>4. Last line launches the execution of the application, which runs till the moment QApplication::exit() is called.</p>
 </div>
 
 

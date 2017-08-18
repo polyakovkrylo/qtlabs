@@ -42,6 +42,78 @@
             
   <div class="section" id="qt-basic-modules">
 <h1>Qt basic modules<a class="headerlink" href="#qt-basic-modules" title="Permalink to this headline">¶</a></h1>
+<p>Qt library includes more than 500 classes, which cover the most part of OS functionality.
+But no worries, you don’t have remeber them all. Due to nice modulariztion you only need to have an idea in mind of which module can include functionality you need, and then go through module classes list in search of a relevant class.</p>
+<p>Any Qt based program must include one or few of following modules: QtCore,
+QtGui, QtWidgets, QtQuick, QtQML.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some of modules above will only work in combination with others. For instance,
+QtQuick is used along with QtQML module.</p>
+</div>
+<p>In the previous excersise you got in touch with some Qt classes, namely QApplication and QLabel. Let’s now list Qt basic C++ modules and specify the example classes those modules include:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="17%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Module</th>
+<th class="head"><dl class="first last docutils">
+<dt>Declaration</dt>
+<dd>in .pro</dd>
+</dl>
+</th>
+<th class="head">Description and classes included</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>QtCore</td>
+<td>core</td>
+<td><p class="first">Set of basic classes not related to GUI</p>
+<ul class="last simple">
+<li>containers: QList, QVector, QMap, QVariant</li>
+<li>io classes: QIODevice, QFile</li>
+<li>timers: QTimer</li>
+<li>date and time: QDate, QTime</li>
+<li>events: QEvent</li>
+<li>settings: QSettings</li>
+<li>animation: QAbstractAnimation</li>
+<li><strong>QCoreAppication</strong></li>
+<li><strong>QObject</strong>, a corner stone of any Qt class</li>
+<li>multi-threading/processing: QThread, QProcess</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td>QtGui</td>
+<td>gui</td>
+<td><p class="first">Set of classes for window system integration,
+OpenGL integration, pallette and cursor shape
+handling, etc.</p>
+<ul class="last simple">
+<li>QWindow</li>
+<li><strong>QGuiApplication</strong>, inherits QCoreApplication</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td>QtWidgets</td>
+<td>widgets</td>
+<td><p class="first">Includes widget classes, building blocks for GUI</p>
+<ul class="last simple">
+<li><strong>QWidget</strong>, the basic class for any widget</li>
+<li>indication: QLabel, QLCDNumber</li>
+<li>layout: QHBoxLayout, QVBoxLayout</li>
+<li>buttons: QPushButton, QCheckButton</li>
+<li>scrolls: QSlider, QScrollBar</li>
+<li>input: QLineEdit, QSpinBox</li>
+<li>pics: QImage, QPixmap</li>
+<li>painting: QPainter, QBrush, QPen</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
@@ -63,7 +135,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting started with Qt</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Lab 1. Core modules and main principles</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Lab 1. Qt basics</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="typicalmain.html">Typical main.cpp file</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Qt basic modules</a></li>
 <li class="toctree-l2"><a class="reference internal" href="signalslot.html">Signal slot phylosophy</a></li>
@@ -76,7 +148,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Lab 1. Core modules and main principles</a><ul>
+  <li><a href="index.html">Lab 1. Qt basics</a><ul>
       <li>Previous: <a href="typicalmain.html" title="previous chapter">Typical main.cpp file</a></li>
       <li>Next: <a href="signalslot.html" title="next chapter">Signal slot phylosophy</a></li>
   </ul></li>
