@@ -1,0 +1,258 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>QObject model philosophy &#8212; qtlabs  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conclusion and exercise" href="conclusion.html" />
+    <link rel="prev" title="Qt basic modules" href="basicmodules.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="qobject-model-philosophy">
+<h1>QObject model philosophy<a class="headerlink" href="#qobject-model-philosophy" title="Permalink to this headline">¶</a></h1>
+<p>QObject is a base class for almost each class in Qt. But what is exactly hidden in it?
+First of all, QObject class is respnosble for creating hyerarchical model in application, what allows developer not to care about maintaing the memory while creating and deleting objects. You can pass the parent for an object as a parameter on creation:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">QObject</span><span class="p">(</span><span class="n">QObject</span><span class="o">*</span> <span class="n">parentObject</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As you can see, default value for this parameter is zero, so if you can skip it if you want to create a root object. Another way to set the parent is to call setParent() function. But what do we need parent-children relationship for? Let’s look at the short example:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">QObject</span><span class="o">*</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QObject</span><span class="p">;</span>
+<span class="n">QObject</span><span class="o">*</span> <span class="n">obj2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QObject</span><span class="p">(</span><span class="n">obj1</span><span class="p">);</span>
+<span class="n">QObject</span><span class="o">*</span> <span class="n">obj3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QObject</span><span class="p">(</span><span class="n">obj2</span><span class="p">);</span>
+<span class="n">QObject</span><span class="o">*</span> <span class="n">obj4</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QObject</span><span class="p">(</span><span class="n">obj1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can see that hyerarchy for the program above goes as follows:</p>
+<img alt="../_images/object_hyerarchy.png" class="align-center" src="../_images/object_hyerarchy.png" />
+<p>Now, if we call deleteLater() method of <code class="docutils literal"><span class="pre">obj3</span></code> or <code class="docutils literal"><span class="pre">obj4</span></code>, it will only delete <code class="docutils literal"><span class="pre">obj3</span></code> or <code class="docutils literal"><span class="pre">obj4</span></code> respectivly. In contrast, if we call <code class="docutils literal"><span class="pre">obj2.deleteLater()</span></code> it will delete <code class="docutils literal"><span class="pre">obj2</span></code> along with <code class="docutils literal"><span class="pre">obj3</span></code>. Finally, if we call <code class="docutils literal"><span class="pre">obj1.deleteLater()</span></code> we will destroy all four objects. Thus, calling deleteLater() method deletes the instance and all its children.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Usually, every object in Qt application should be created by calling <code class="docutils literal"><span class="pre">new</span></code>
+and deleted with <code class="docutils literal"><span class="pre">deleteLater()</span></code> method. Excptions are objects with no parents or temporal objects, like objetc that were created to be passed as an argument, for instance <code class="docutils literal"><span class="pre">lbl.setPixmap(QPixmap(&quot;:/background.png&quot;))</span></code>, where QPixmap object is used as an argument for <code class="docutils literal"><span class="pre">setPixmap</span></code> function and does not even have a name.</p>
+</div>
+<p>But it’s not the only reason why we need parent concept. You can access the list of children from object by calling children(), or you can search for specific child using findChild() function.</p>
+<p>For widgets parent-children relation looks even more interesting. Every child
+widget can be only rendered inside its parent. For instance, following example
+shows two QPushButton objects created on top of QLabel:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">QLabel</span><span class="o">*</span> <span class="n">lbl</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QLabel</span><span class="p">;</span>
+<span class="n">lbl</span><span class="o">-&gt;</span><span class="n">setPixmap</span><span class="p">(</span><span class="n">QPixmap</span><span class="p">(</span><span class="s">&quot;:/background.png&quot;</span><span class="p">));</span>
+
+<span class="n">QPushButton</span><span class="o">*</span> <span class="n">pb1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s">&quot;Button 1&quot;</span><span class="p">,</span> <span class="n">lbl</span><span class="p">);</span>
+<span class="n">QPushButton</span><span class="o">*</span> <span class="n">pb2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">QPushButton</span><span class="p">(</span><span class="s">&quot;Button 2&quot;</span><span class="p">,</span> <span class="n">lbl</span><span class="p">);</span>
+<span class="n">pb2</span><span class="o">-&gt;</span><span class="n">move</span><span class="p">(</span><span class="n">pb1</span><span class="o">-&gt;</span><span class="n">width</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<img alt="../_images/ex3.png" class="align-center" src="../_images/ex3.png" />
+<p>It makes the answer for the previous excersice obvious. Since both widgets did not have a parent, they both were created as separate windows.</p>
+<div class="section" id="signals-and-slots">
+<h2>Signals and slots<a class="headerlink" href="#signals-and-slots" title="Permalink to this headline">¶</a></h2>
+<p>Last and the most important about QObject is the signal-slot connection feature. The concept of signals and slots is very simple and that is why it is so good:</p>
+<p>1. Every object of class inherited from QObject can transimit and receive signals.
+2. Every object of class inherited from QObject can have one or few slots. Slot is a function that is called when a signal connected to it is received.
+3. Every signal can be connected to one or few slots, internal(signal and slot are inside one object) and external (signal and slot are in different objects).
+4. Each signal can have one or few argumentsthat will be passed to the slot.
+5. Signal and slot connection can be performed in any part of the program.
+6. When one objectstaking part in connetion is destructed, signal and slot are automatically disconnected.</p>
+<p>Of course, there are few issues of using signal-slot mechanism:</p>
+<p>1. There is no compiling-time checking of connect() function, so if something  is wrong with <code class="docutils literal"><span class="pre">connect()</span></code> you will only be able to see it after starting the application.
+2. Signal-slot connection works a bit slower than direct call of function. You
+won’t see it, probably, but still it is good to know.
+3. by default signal-slot connection works in queued way, which means that some time will pass between emiting a signal and calling a dedicated slot.
+4. Class that utilizes signals and slots must be inherited from QObject or
+one of QObject successors.</p>
+</div>
+<div class="section" id="signals">
+<h2>Signals<a class="headerlink" href="#signals" title="Permalink to this headline">¶</a></h2>
+<p>Signals in Qt is nothing but functions with the capability of sending messages. Signals are always public in Qt5, Which means that you can emit signals that are defined in predecessor class as well as you can emit signal that you have defined by yourself.To create and use a signal:</p>
+<p>1. Put <code class="docutils literal"><span class="pre">Q_OBJECT</span></code> macro in header file right below the opening bracket like this:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="o">:</span> <span class="k">public</span> <span class="n">QObject</span>
+<span class="p">{</span>
+  <span class="n">Q_OBJECT</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Declare the signal in class in <code class="docutils literal"><span class="pre">signals</span></code> section:</li>
+</ol>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="nl">signals</span><span class="p">:</span>
+  <span class="kt">void</span> <span class="n">mySignal</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg1</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Arguments you want to pass to slot should be specified inside backets, not as
+a return value.</p>
+</div>
+<p>3. Whenever you want to emit the signal, just call emit:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">emit</span> <span class="nf">mySignal</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Here you emit <code class="docutils literal"><span class="pre">mySignal()</span></code> with 10 as an argument. Later on you will see that
+almost anything can be used as an argument, what makes it especially usefull when using object pointers as arguments.</p>
+</div>
+<div class="section" id="slots">
+<h2>Slots<a class="headerlink" href="#slots" title="Permalink to this headline">¶</a></h2>
+<p>Slot in Qt is a function that can be called if the dedicated signal is triggered.
+Still, slots can also be called as a normal function. Moreover, slots can be
+public, protected or private, just like a normal function. To create a slot:</p>
+<p>1. Put <code class="docutils literal"><span class="pre">Q_OBJECT</span></code> macro in header file right below the opening bracket like this:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyClass</span><span class="o">:</span> <span class="k">public</span> <span class="n">QObject</span>
+<span class="p">{</span>
+  <span class="n">Q_OBJECT</span>
+</pre></div>
+</div>
+<p>2. Declare the slot in class in <code class="docutils literal"><span class="pre">public</span> <span class="pre">slots</span></code>, <code class="docutils literal"><span class="pre">protected</span> <span class="pre">slots</span></code> or <code class="docutils literal"><span class="pre">private</span> <span class="pre">slots</span></code> section:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="k">public</span> <span class="nl">slots</span><span class="p">:</span>
+  <span class="kt">void</span> <span class="n">mySlot</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg1</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Define the slot in .cpp just like a regular function:</li>
+</ol>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">MyClass</span><span class="o">::</span><span class="n">mySlot</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">arg1</span> <span class="o">+</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="n">qDebug</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;the answer is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Here <code class="docutils literal"><span class="pre">qDebug()</span></code> function is used to print the answer in the console, you can think of it as analouge of <code class="docutils literal"><span class="pre">printf()</span></code>.</p>
+</div>
+<p>The only thing left is to connect <code class="docutils literal"><span class="pre">mySlot()</span></code> to some signal, so it will be
+called every time signal is triggered.</p>
+</div>
+<div class="section" id="signal-slot-connetion">
+<h2>Signal-slot connetion<a class="headerlink" href="#signal-slot-connetion" title="Permalink to this headline">¶</a></h2>
+<p>Connection between signals and slots is performed using <code class="docutils literal"><span class="pre">connect()</span></code>. Normally,
+you use it like this:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">MyClass</span><span class="o">*</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">;</span>
+<span class="n">MyClass</span><span class="o">*</span> <span class="n">obj2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyClass</span><span class="p">;</span>
+<span class="n">QObject</span><span class="o">::</span><span class="n">connect</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span> <span class="n">SIGNAL</span><span class="p">(</span><span class="n">mySignal</span><span class="p">(</span><span class="kt">int</span><span class="p">)),</span> <span class="n">obj2</span><span class="p">,</span> <span class="n">SLOT</span><span class="p">(</span><span class="n">mySlot</span><span class="p">(</span><span class="kt">int</span><span class="p">)));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As mentioned above, you call <code class="docutils literal"><span class="pre">connect()</span></code> from any part of the program. Nevertheless, you should add <code class="docutils literal"><span class="pre">QObject::</span></code> before <code class="docutils literal"><span class="pre">connect()</span></code> if you try to use it outside of class inherited from QObject, for instance, in <code class="docutils literal"><span class="pre">main()</span></code>.</p>
+</div>
+<p>Arguments of <code class="docutils literal"><span class="pre">connect()</span></code> are:</p>
+<ul class="simple">
+<li>sender: pointer to the sender object;</li>
+<li>signal: pointer to the signal function (you can see it is inside the <code class="docutils literal"><span class="pre">SIGNAL()</span></code> macro)</li>
+<li>receiver: pointer to the receiver object;</li>
+<li>slot: pointer to the slot function (you can see it is inside the <code class="docutils literal"><span class="pre">SLOT()</span></code> macro)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you call <code class="docutils literal"><span class="pre">connect()</span></code> inside a class and want to use it as the receiver or the sender, you can use <cite>this</cite> pointer instead</p>
+</div>
+<p>So that is it! Every time <code class="docutils literal"><span class="pre">mySignal()</span></code> of <code class="docutils literal"><span class="pre">obj1</span></code> is triggered <code class="docutils literal"><span class="pre">mySlot()</span></code> of <code class="docutils literal"><span class="pre">obj2</span></code> is called. Later on, if you want to disconnect these signal and slot you only need to call disconnect function:</p>
+<p>After that, <code class="docutils literal"><span class="pre">obj2</span></code> will no longer react on <code class="docutils literal"><span class="pre">mySignal()</span></code> of <code class="docutils literal"><span class="pre">obj1</span></code>.</p>
+<p>Only few more notes about connections left:</p>
+<p>1. Signal can be connected to other signals. If so, signal that used a slot will be emitted every time the first signal is emitted.</p>
+<p>2. Signal and slot that are connected to each other should have the same number of arguments. The only exception is when slot does not have any arguments at all.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">qtlabs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting started with Qt</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Lab 1. Qt basics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="typicalmain.html">Typical main.cpp file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basicmodules.html">Qt basic modules</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">QObject model philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conclusion.html">Conclusion and exercise</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Lab 1. Qt basics</a><ul>
+      <li>Previous: <a href="basicmodules.html" title="previous chapter">Qt basic modules</a></li>
+      <li>Next: <a href="conclusion.html" title="next chapter">Conclusion and exercise</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Vladimir Poliakov.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/lab1/qobject.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

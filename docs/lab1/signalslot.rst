@@ -1,2 +1,0 @@
-Signal slot phylosophy
-======================

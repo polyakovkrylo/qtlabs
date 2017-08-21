@@ -1,0 +1,58 @@
+Conclusion and exercise
+==================================
+
+Thus, we have discussed basic principles of Qt. It is a good alternative to \
+classic implementation of connection between component, even though it brings \
+some overheads.
+QObject is a base class for almost each class in Qt. It is used to create a
+hyerarchical model, automatic memory management, and for realization of \
+signal-slot model.
+Signals and slots help objects to communicate with each other. Signals can be \
+connected to few slots, as well slot can be connected to few signals.
+Slot function is called whenever the dedicated signal is triggered.\
+
+---------
+Exercise
+---------
+
+Let's create this time a image viewer. It will show pics from a specified folder.
+It should has a label that will show an image and two buttons: "Next" and \
+"Previous", that will change the current image. Few hints on how to do it, \
+although you can have a better idea of implementation:
+
+1. Create Qt widget application project.
+2. Create a class inherited from QWidget.
+3. Add one ``QLabel`` and two ``QPushButtons`` as attributes of this class.
+
+.. note::
+
+  You at look previos examples to refresh memories, or check out \
+  <QPushButton http://doc.qt.io/qt-5.6/qpushbutton.html>_
+  and <QLabel http://doc.qt.io/qt-5.6/qpushbutton.html>_
+  documentation to see a bit more about these classes.
+
+4. Implement a function, that would set up the path for viewer's directory
+
+.. note::
+
+  Please, check out <QString http://doc.qt.io/qt-5.6/qstring.html>_
+  class documentaion. It is a common class used for strings in Qt.
+
+5. Implement slots, that will set next and previos image in the folder as the
+current pixmap for our label.
+
+.. hint::
+  <QDir http://doc.qt.io/qt-5/qdir.html>_ is the class of choice for you. \
+  It has a function ``operator []`` which return string name of a file at the \
+  position specified inside the brackets, for instance:
+
+  ..code-block:
+    QDir dir("/home/user")
+    QString fileName= dir[1];
+
+  will return the name of the second file in "/home/user directory"
+
+6. Connect signals of your buttons to dedicated slots you have created.
+7. Create an instance of your calss in main().
+
+Good luck!

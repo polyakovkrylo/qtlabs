@@ -1,0 +1,160 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Conclusion and exercise &#8212; qtlabs  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="QObject model philosophy" href="qobject.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="conclusion-and-exercise">
+<h1>Conclusion and exercise<a class="headerlink" href="#conclusion-and-exercise" title="Permalink to this headline">¶</a></h1>
+<p>Thus, we have discussed basic principles of Qt. It is a good alternative to classic implementation of connection between component, even though it brings some overheads.
+QObject is a base class for almost each class in Qt. It is used to create a
+hyerarchical model, automatic memory management, and for realization of signal-slot model.
+Signals and slots help objects to communicate with each other. Signals can be connected to few slots, as well slot can be connected to few signals.
+Slot function is called whenever the dedicated signal is triggered.</p>
+<div class="section" id="exercise">
+<h2>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<p>Let’s create this time a image viewer. It will show pics from a specified folder.
+It should has a label that will show an image and two buttons: “Next” and “Previous”, that will change the current image. Few hints on how to do it, although you can have a better idea of implementation:</p>
+<ol class="arabic simple">
+<li>Create Qt widget application project.</li>
+<li>Create a class inherited from QWidget.</li>
+<li>Add one <code class="docutils literal"><span class="pre">QLabel</span></code> and two <code class="docutils literal"><span class="pre">QPushButtons</span></code> as attributes of this class.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You at look previos examples to refresh memories, or check out &lt;QPushButton <a class="reference external" href="http://doc.qt.io/qt-5.6/qpushbutton.html">http://doc.qt.io/qt-5.6/qpushbutton.html</a>&gt;_
+and &lt;QLabel <a class="reference external" href="http://doc.qt.io/qt-5.6/qpushbutton.html">http://doc.qt.io/qt-5.6/qpushbutton.html</a>&gt;_
+documentation to see a bit more about these classes.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li>Implement a function, that would set up the path for viewer’s directory</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Please, check out &lt;QString <a class="reference external" href="http://doc.qt.io/qt-5.6/qstring.html">http://doc.qt.io/qt-5.6/qstring.html</a>&gt;_
+class documentaion. It is a common class used for strings in Qt.</p>
+</div>
+<p>5. Implement slots, that will set next and previos image in the folder as the
+current pixmap for our label.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>&lt;QDir <a class="reference external" href="http://doc.qt.io/qt-5/qdir.html">http://doc.qt.io/qt-5/qdir.html</a>&gt;_ is the class of choice for you. It has a function <code class="docutils literal"><span class="pre">operator</span> <span class="pre">[]</span></code> which return string name of a file at the position specified inside the brackets, for instance:</p>
+<dl class="docutils">
+<dt>..code-block:</dt>
+<dd>QDir dir(“/home/user”)
+QString fileName= dir[1];</dd>
+</dl>
+<p class="last">will return the name of the second file in “/home/user directory”</p>
+</div>
+<ol class="arabic simple" start="6">
+<li>Connect signals of your buttons to dedicated slots you have created.</li>
+<li>Create an instance of your calss in main().</li>
+</ol>
+<p>Good luck!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">qtlabs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting started with Qt</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Lab 1. Qt basics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="typicalmain.html">Typical main.cpp file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basicmodules.html">Qt basic modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="qobject.html">QObject model philosophy</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conclusion and exercise</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Lab 1. Qt basics</a><ul>
+      <li>Previous: <a href="qobject.html" title="previous chapter">QObject model philosophy</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Vladimir Poliakov.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/lab1/conclusion.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

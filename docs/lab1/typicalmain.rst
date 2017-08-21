@@ -36,7 +36,7 @@ separate window, and the applicaion will exit once this window is closed.
 4. Last line launches the execution of the application, which runs till the \
 moment QApplication::exit() is called.
 
-.. exercies::
+.. note::
 
   Try to create two instances of QLabel inside one application. Are they shown in \
   separate windows? If so, will the application exit if you close one of them?
