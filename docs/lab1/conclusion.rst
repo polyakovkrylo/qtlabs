@@ -43,11 +43,12 @@ current pixmap for our label.
 
 .. hint::
   `QDir <http://doc.qt.io/qt-5/qdir.html>`_ is the class of choice for you. \
-  It has a function ``operator []`` which return string name of a file at the \
+  It has a function ``operator []`` which returns the name of a file at the \
   position specified inside the brackets, for instance:
 
-  ..code-block:
-    QDir dir("/home/user")
+  .. code-block:: c++
+
+    QDir dir("/home/user");
     QString fileName= dir[1];
 
   will return the name of the second file in "/home/user directory"

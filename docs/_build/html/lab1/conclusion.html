@@ -73,12 +73,11 @@ class documentaion. It is a common class used for strings in Qt.</p>
 current pixmap for our label.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p><a class="reference external" href="http://doc.qt.io/qt-5/qdir.html">QDir</a> is the class of choice for you. It has a function <code class="docutils literal"><span class="pre">operator</span> <span class="pre">[]</span></code> which return string name of a file at the position specified inside the brackets, for instance:</p>
-<dl class="docutils">
-<dt>..code-block:</dt>
-<dd>QDir dir(“/home/user”)
-QString fileName= dir[1];</dd>
-</dl>
+<p><a class="reference external" href="http://doc.qt.io/qt-5/qdir.html">QDir</a> is the class of choice for you. It has a function <code class="docutils literal"><span class="pre">operator</span> <span class="pre">[]</span></code> which returns the name of a file at the position specified inside the brackets, for instance:</p>
+<div class="highlight-c++"><div class="highlight"><pre><span></span><span class="n">QDir</span> <span class="nf">dir</span><span class="p">(</span><span class="s">&quot;/home/user&quot;</span><span class="p">);</span>
+<span class="n">QString</span> <span class="n">fileName</span><span class="o">=</span> <span class="n">dir</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</pre></div>
+</div>
 <p class="last">will return the name of the second file in “/home/user directory”</p>
 </div>
 <ol class="arabic simple" start="6">
