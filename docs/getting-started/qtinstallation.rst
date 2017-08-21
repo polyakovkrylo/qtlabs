@@ -7,7 +7,7 @@ creating a simple hello world project:
 .. note::
   Installation will use approx. 1.47GiB of disk space.
 
-1. Go to `Qt download page <https://info.qt.io/download-qt-for-application-development>`_\
+1. Go to `Qt download page <https://info.qt.io/download-qt-for-application-development>`_ \
 and download Qt by picking open source version.
 
 |

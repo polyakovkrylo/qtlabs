@@ -27,22 +27,22 @@ although you can have a better idea of implementation:
 .. note::
 
   You at look previos examples to refresh memories, or check out \
-  <QPushButton http://doc.qt.io/qt-5.6/qpushbutton.html>_
-  and <QLabel http://doc.qt.io/qt-5.6/qpushbutton.html>_
+  `QPushButton <http://doc.qt.io/qt-5.6/qpushbutton.html>`_
+  and `QLabel <http://doc.qt.io/qt-5.6/qpushbutton.html>`_
   documentation to see a bit more about these classes.
 
 4. Implement a function, that would set up the path for viewer's directory
 
 .. note::
 
-  Please, check out <QString http://doc.qt.io/qt-5.6/qstring.html>_
+  Please, check out `QString <http://doc.qt.io/qt-5.6/qstring.html>`_
   class documentaion. It is a common class used for strings in Qt.
 
 5. Implement slots, that will set next and previos image in the folder as the
 current pixmap for our label.
 
 .. hint::
-  <QDir http://doc.qt.io/qt-5/qdir.html>_ is the class of choice for you. \
+  `QDir <http://doc.qt.io/qt-5/qdir.html>`_ is the class of choice for you. \
   It has a function ``operator []`` which return string name of a file at the \
   position specified inside the brackets, for instance:
 

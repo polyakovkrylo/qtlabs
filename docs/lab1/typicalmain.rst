@@ -41,5 +41,5 @@ moment QApplication::exit() is called.
   Try to create two instances of QLabel inside one application. Are they shown in \
   separate windows? If so, will the application exit if you close one of them?
   Now try to set the first label as a parent for the second label. Refer to
-  'QLabel members list <http://doc.qt.io/qt-4.8/qlabel-members.html>'_. What \
+  `QLabel members list <http://doc.qt.io/qt-4.8/qlabel-members.html>`_. What \
   happens now? Are both labels shown in one window?
